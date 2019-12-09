@@ -80,6 +80,13 @@
                             </div>
                         </div>
                     </form>
+
+                    <br>
+                    <#if RequestParameters.error??>
+                        <div class="alert alert-danger" id="alert" role="alert">
+                            Error, user or password incorrect!
+                        </div>
+                    </#if>
                     <!-- end of form -->
                 </div>
                 <!-- Authentication card end -->
@@ -132,7 +139,9 @@
     </div>
     <p>Sorry for the inconvenience!</p>
 </div>
+
 <![endif]-->
+
 <!-- Warning Section Ends -->
 <!-- Required Jquery -->
 <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
@@ -145,6 +154,13 @@
 <script type="text/javascript" src="js/modernizr/modernizr.js"></script>
 <script type="text/javascript" src="js/modernizr/css-scrollbars.js"></script>
 <script type="text/javascript" src="js/common-pages.js"></script>
+
+<#--Alert fadeout configuration-->
+<script>
+    $(document).ready(function(){
+        $("#alert").fadeOut(10000);
+    });
+</script>
 </body>
 
 </html>
