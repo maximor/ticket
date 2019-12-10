@@ -56,21 +56,21 @@
 <![endif]-->
 <!-- Warning Section Ends -->
 <!-- Required Jquery -->
-<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
-<script type="text/javascript" src="js/popper.js/popper.min.js"></script>
-<script type="text/javascript" src="js/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../js/popper.js/popper.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
 <!-- jquery slimscroll js -->
-<script type="text/javascript" src="js/jquery-slimscroll/jquery.slimscroll.js"></script>
+<script type="text/javascript" src="../js/jquery-slimscroll/jquery.slimscroll.js"></script>
 <!-- modernizr js -->
-<script type="text/javascript" src="js/modernizr/modernizr.js"></script>
-<script type="text/javascript" src="js/modernizr/css-scrollbars.js"></script>
+<script type="text/javascript" src="../js/modernizr/modernizr.js"></script>
+<script type="text/javascript" src="../js/modernizr/css-scrollbars.js"></script>
 
 <!-- Custom js -->
-<script type="text/javascript" src="js/script.js"></script>
-<script src="js/pcoded.min.js"></script>
-<script src="js/vartical-demo.js"></script>
-<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="../js/script.js"></script>
+<script src="../js/pcoded.min.js"></script>
+<script src="../js/vartical-demo.js"></script>
+<script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
 </body>
 
 </html>

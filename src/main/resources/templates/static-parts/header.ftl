@@ -20,16 +20,16 @@
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <!-- Google font--><link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap/css/bootstrap.min.css">
     <!-- themify-icons line icon -->
-    <link rel="stylesheet" type="text/css" href="icon/themify-icons/themify-icons.css">
-    <link rel="stylesheet" type="text/css" href="icon/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="../icon/font-awesome/css/font-awesome.min.css">
 
     <!-- ico font -->
-    <link rel="stylesheet" type="text/css" href="icon/icofont/css/icofont.css">
+    <link rel="stylesheet" type="text/css" href="../icon/icofont/css/icofont.css">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery.mCustomScrollbar.css">
 </head>
 
 <body>
@@ -78,7 +78,7 @@
 
                         <li class="user-profile header-notification">
                             <a href="#!">
-                                <img src="images/profile-avatar-image.png" class="img-radius" alt="User-Profile-Image">
+                                <img src="../images/profile-avatar-image.png" class="img-radius" alt="User-Profile-Image">
                                 <span><#if currentUserName??>${currentUserName}</#if></span>
                                 <i class="ti-angle-down"></i>
                             </a>
