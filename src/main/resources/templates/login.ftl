@@ -55,11 +55,11 @@
                             </div>
                             <hr/>
                             <div class="input-group">
-                                <input type="email" name="username" class="form-control" placeholder="Your Email Address">
+                                <input type="email" name="username" class="form-control" placeholder="Your Email Address" required>
                                 <span class="md-line"></span>
                             </div>
                             <div class="input-group">
-                                <input type="password" name="password" class="form-control" placeholder="Password">
+                                <input type="password" name="password" class="form-control" placeholder="Password" required>
                                 <span class="md-line"></span>
                             </div>
                             <div class="row m-t-25 text-left">
