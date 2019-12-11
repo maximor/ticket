@@ -65,7 +65,7 @@
                             </td>
                             <td class="text-center">
                                 <a class="btn btn-info" href="/ticket/${ticket.getId()}"><i class="ti-eye"></i></a>
-                                <a class="btn btn-primary" href="/employee/"><i class="ti-pencil"></i></a>
+                                <a class="btn btn-primary" href="/ticket-edit/${ticket.getId()}"><i class="ti-pencil"></i></a>
                                 <a class="btn btn-danger" onclick="deletef(${ticket.getId()})"><i class="ti-close"></i></a>
                             </td>
                         </tr>

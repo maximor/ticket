@@ -2,7 +2,6 @@ package com.nettech.ticket.ticket;
 
 import com.nettech.ticket.user.User;
 import com.nettech.ticket.user.UserRepository;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -87,6 +86,57 @@ public class TicketController {
         return "ticket/ticket-details";
     }
 
+    @RequestMapping("/ticket-edit/{id}")
+    public String ticketEdit(Principal principal, Model model, @PathVariable Integer id){
+        currentUser = userRepository.findByEmail(principal.getName());
+        model.addAttribute("currentUserName", currentUser.getFirstname()+" "+currentUser.getLastname());
+        model.addAttribute("users", userRepository.findAllByStatusTrue());
+        try{
+            Optional<Ticket> ticket = Optional.ofNullable(ticketRepository.findById(id)
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid Ticket Id: " + id)));
+
+            model.addAttribute("ticket", ticket.get());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            model.addAttribute("error", "Error, Invalid Ticket Id "+ id);
+        }
+        return "ticket/ticket-edit";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/ticket-edit/{id}")
+    public String ticketEdit(Principal principal, Model model, Ticket ticket, @PathVariable Integer id){
+        currentUser = userRepository.findByEmail(principal.getName());
+        model.addAttribute("currentUserName", currentUser.getFirstname()+" "+currentUser.getLastname());
+        model.addAttribute("users", userRepository.findAllByStatusTrue());
+
+        try{
+            Ticket ticketSave = ticketRepository.findById(id).get();
+
+            if(!ticket.getSubject().equals(ticketSave.getSubject())){
+                ticketSave.setSubject(ticket.getSubject());
+            }else if(!ticket.getDescription().equals(ticketSave.getDescription())){
+                ticketSave.setDescription(ticket.getDescription());
+            }else if(!ticket.getEmployeesfield().equals(ticketSave.getEmployeesfield())){
+                if(ticket.getEmployeesfield().length() > ticketSave.getEmployeesfield().length()){
+                    ticketSave.setEmployeesfield(ticket.getEmployeesfield());
+                    ticketSave = addEmployeeToTicket(ticketSave);
+                }else{
+                    ticketSave.setEmployeesfield(ticket.getEmployeesfield());
+                    ticketSave = deleteEmployeeFromTicket(ticketSave);
+                }
+            }
+
+
+            model.addAttribute("ticket", ticketRepository.save(ticketSave));
+            model.addAttribute("message", "Ticket Updated successfully");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            model.addAttribute("error", "Error, Invalid Ticket Id "+ id);
+        }
+
+        return "ticket/ticket-edit";
+    }
+
     @RequestMapping(method = RequestMethod.DELETE, value = "/ticket/{id}/delete")
     public String ticketDelete(@PathVariable Integer id, Model model){
         try{
@@ -97,6 +147,41 @@ public class TicketController {
         }
 
         return "redirect:/ticket/view";
+    }
+
+    private Ticket deleteEmployeeFromTicket(Ticket ticket){
+        if(ticket.getEmployeesfield().length() > 0){
+            ticket.getEmployees().clear();
+            List<User> users = new ArrayList<>();
+            List<String> emails = Arrays.asList(ticket.getEmployeesfield().trim().split(","));
+            for(int i = 0; i < emails.size(); i++){
+                if(!emails.get(i).equals("")){
+                    users.add(userRepository.findByEmail(emails.get(i).trim()));
+                }
+            }
+            ticket.setEmployees(users);
+        }else{
+            if(ticket.getEmployees().size() > 0){
+                ticket.getEmployees().clear();
+            }
+        }
+        return ticket;
+    }
+
+    private Ticket addEmployeeToTicket(Ticket ticket){
+        if(ticket.getEmployeesfield().length() > 0){
+            List<User> users = new ArrayList<>();
+            List<String> emails = Arrays.asList(ticket.getEmployeesfield().trim().split(","));
+            ticket.getEmployees().clear();
+            for(int i = 0; i < emails.size(); i++){
+                if(!emails.get(i).equals("")){
+                    users.add(userRepository.findByEmail(emails.get(i).trim()));
+                }
+            }
+            ticket.setEmployees(users);
+        }
+
+        return ticket;
     }
 
 }
