@@ -149,6 +149,17 @@ public class TicketController {
         return "redirect:/ticket/view";
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, value = "/ticket/{id}/employee/{idEmployee}/delete")
+    public String ticketEmployeeDelete(@PathVariable Integer id, @PathVariable Integer idEmployee, Model model){
+        Ticket ticket = ticketRepository.findById(id).get();
+        User user = userRepository.findById(idEmployee).get();
+
+        ticket.getEmployees().remove(user);
+        ticketRepository.save(ticket);
+        return "redirect:/ticket/"+id;
+
+    }
+
     private Ticket deleteEmployeeFromTicket(Ticket ticket){
         if(ticket.getEmployeesfield().length() > 0){
             ticket.getEmployees().clear();
