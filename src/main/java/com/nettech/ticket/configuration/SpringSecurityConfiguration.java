@@ -33,7 +33,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/icon/**",
                         "/images/**"
                 ).permitAll()
-                .antMatchers("/login*").permitAll()
+                .antMatchers("/login*", "/dbconsole/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

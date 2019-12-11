@@ -25,6 +25,8 @@ public class Ticket {
     private String description;
     private boolean status = true;
 
+    private String employeesfield;
+
     @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<User> employees;
@@ -42,26 +44,36 @@ public class Ticket {
         this.status = status;
     }
 
-    public Ticket(String subject, String description, boolean status, List<User> employees) {
+    public Ticket(String subject, String description, boolean status, String employeesfield) {
         this.subject = subject;
         this.description = description;
         this.status = status;
+        this.employeesfield = employeesfield;
+    }
+
+    public Ticket(String subject, String description, boolean status, String employeesfield, List<User> employees) {
+        this.subject = subject;
+        this.description = description;
+        this.status = status;
+        this.employeesfield = employeesfield;
         this.employees = employees;
     }
 
-    public Ticket(String subject, String description, boolean status, List<User> employees, List<TimeEntry> timeEntries) {
+    public Ticket(String subject, String description, boolean status, String employeesfield, List<User> employees, List<TimeEntry> timeEntries) {
         this.subject = subject;
         this.description = description;
         this.status = status;
+        this.employeesfield = employeesfield;
         this.employees = employees;
         this.timeEntries = timeEntries;
     }
 
-    public Ticket(Date creationDate, String subject, String description, boolean status, List<User> employees, List<TimeEntry> timeEntries) {
+    public Ticket(Date creationDate, String subject, String description, boolean status, String employeesfield, List<User> employees, List<TimeEntry> timeEntries) {
         this.creationDate = creationDate;
         this.subject = subject;
         this.description = description;
         this.status = status;
+        this.employeesfield = employeesfield;
         this.employees = employees;
         this.timeEntries = timeEntries;
     }
@@ -120,5 +132,13 @@ public class Ticket {
 
     public void setTimeEntries(List<TimeEntry> timeEntries) {
         this.timeEntries = timeEntries;
+    }
+
+    public String getEmployeesfield() {
+        return employeesfield;
+    }
+
+    public void setEmployeesfield(String employeesfield) {
+        this.employeesfield = employeesfield;
     }
 }

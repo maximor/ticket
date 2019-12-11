@@ -19,6 +19,6 @@ public class ApplicationController {
         User user = userRepository.findByEmail(principal.getName());
 
         model.addAttribute("currentUserName", user.getFirstname()+" "+user.getLastname());
-        return "index";
+        return "redirect:/ticket/view";
     }
 }
