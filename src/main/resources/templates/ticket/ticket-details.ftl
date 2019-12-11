@@ -17,7 +17,7 @@
         <div class="card-header text-center">
             <#if ticket??>
                 <a class="btn btn-info" href="/ticket-edit/${ticket.getId()}">Edit</a>
-                <a class="btn btn-danger" onclick="cancel()">Cancel</a>
+                <a class="btn btn-danger" onclick="deletef(${ticket.getId()})">Delete</a>
             </#if>
         </div>
 
@@ -174,6 +174,20 @@
         if(confirmation){
             $.ajax({
                 url: '/ticket/'+id+'/employee/'+idEmployee+'/delete',
+                type: 'delete',
+                success:function(result){
+                    window.location.href = "http://localhost/ticket/"+id;
+                }
+
+            });
+        }
+    }
+
+    function deletef(id) {
+        var confirmation = confirm("Are you sure you want to delete this ticket?");
+        if(confirmation){
+            $.ajax({
+                url: '/ticket/'+id+'/delete',
                 type: 'delete',
                 success:function(result){
                     window.location.href = "http://localhost/ticket/"+id;
