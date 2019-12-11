@@ -20,18 +20,19 @@
                 <div class="col-sm-2">
                     <label class="col-form-label" for="lastname-input">Employees:</label>
                 </div>
-                <div class="col-sm-9">
+                <div class="col-sm-8">
                     <select class="form-control" id="myselect">
                         <#if users??>
                             <#list users as user>
-                                <option value="${user.getEmail()}">${user.getEmail()} </option>
+                                <option value="${user.getEmail()}">${user.getEmail()}</option>
                             </#list>
                         </#if>
 
                     </select>
                 </div>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                     <a title="add an employee to the list" class="btn btn-primary" onclick="addEmployee()"><i class="ti-check"></i></a>
+                    <a title="add an employee to the list" class="btn btn-danger" onclick="deleteEmployee()"><i class="ti-close"></i></a>
                 </div>
             </div>
 
@@ -76,7 +77,6 @@
         let status = true;
         values.split(",").forEach(function (value) {
             if(value != ""){
-                console.log(value);
                 if(value == email){
                     status = false;
                 }
@@ -85,6 +85,15 @@
 
         if (status){
             employeesfields.val(values+","+email);
+        }
+    }
+
+    function deleteEmployee() {
+        let emails = $("#employeesfield").val();
+
+        if(emails.length > 0){
+            let len = emails.split(",").length;
+            $("#employeesfield").val(emails.split(",", len - 1));
         }
     }
 
