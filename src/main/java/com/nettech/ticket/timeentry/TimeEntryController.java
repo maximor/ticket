@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.crypto.spec.PSource;
 import java.lang.reflect.Array;
 import java.security.Principal;
 import java.time.LocalDateTime;
@@ -67,10 +68,10 @@ public class TimeEntryController {
 
             System.out.println("date: " + initialDate);
             if(ticket.getTimeEntries().size() > 0){
-                ticket.getTimeEntries().add(new TimeEntry(initialDate, endDate, note, Arrays.asList(employee)));
+                ticket.getTimeEntries().add(new TimeEntry(initialDate, endDate, note, Arrays.asList(employee), ticket));
             }else{
                 List<TimeEntry> timeEntries = new ArrayList<>();
-                timeEntries.add(new TimeEntry(initialDate, endDate, note, Arrays.asList(employee)));
+                timeEntries.add(new TimeEntry(initialDate, endDate, note, Arrays.asList(employee), ticket));
                 ticket.setTimeEntries(timeEntries);
             }
             ticketRepository.save(ticket);
@@ -83,5 +84,55 @@ public class TimeEntryController {
         }
 
         return "timeentry/timeentry-create";
+    }
+
+    @RequestMapping("/timeentry-edit/{id}")
+    public String timeEntryTicket(Principal principal, Model model, @PathVariable Integer id){
+        currentUser = userRepository.findByEmail(principal.getName());
+        model.addAttribute("currentUserName", currentUser.getFirstname()+" "+currentUser.getLastname());
+        model.addAttribute("users", userRepository.findAll());
+
+        try{
+            TimeEntry timeEntry = timeEntryRepository.findById(id).get();
+            model.addAttribute("timeentry", timeEntry);
+        }catch (Exception e){
+            model.addAttribute("error", "Error, Invalid Time Entry Id "+ id);
+        }
+
+        return "timeentry/timeentry-edit";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/timeentry-edit/{id}")
+    public String timeEntryTicket(Principal principal, Model model, @PathVariable Integer id,
+                                  @RequestParam("idEmployee") Integer idEmployee,
+                                  @RequestParam("initialDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime initialDate,
+                                  @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
+                                  @RequestParam("note") String note){
+        currentUser = userRepository.findByEmail(principal.getName());
+        model.addAttribute("currentUserName", currentUser.getFirstname()+" "+currentUser.getLastname());
+        model.addAttribute("users", userRepository.findAll());
+
+        try{
+            TimeEntry timeEntry = timeEntryRepository.findById(id).get();
+            if(timeEntry.getEmployees().get(0).getId() != idEmployee){
+                timeEntry.getEmployees().clear();
+                List<User> users = new ArrayList<>();
+                users.add(userRepository.findById(idEmployee).get());
+                timeEntry.setEmployees(users);
+            }else if(timeEntry.getInitialDate() != initialDate){
+                timeEntry.setInitialDate(initialDate);
+            }else if(timeEntry.getEndDate() != endDate){
+                timeEntry.setEndDate(endDate);
+            }
+            timeEntry.setNote(note);
+
+            timeEntry = timeEntryRepository.save(timeEntry);
+            model.addAttribute("timeentry", timeEntry);
+            model.addAttribute("message", "Time Entry Updated successfully");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            model.addAttribute("error", "Error, Invalid Time Entry Id "+ id);
+        }
+        return "timeentry/timeentry-edit";
     }
 }

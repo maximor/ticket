@@ -31,7 +31,7 @@ public class Ticket {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<User> employees;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<TimeEntry> timeEntries;
 

@@ -1,5 +1,6 @@
 package com.nettech.ticket.timeentry;
 
+import com.nettech.ticket.ticket.Ticket;
 import com.nettech.ticket.user.User;
 
 import javax.persistence.*;
@@ -22,6 +23,11 @@ public class TimeEntry {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<User> employees;
 
+    @ManyToOne
+    private Ticket ticket;
+
+
+
     public TimeEntry() {
     }
 
@@ -36,6 +42,14 @@ public class TimeEntry {
         this.endDate = endDate;
         this.note = note;
         this.employees = employees;
+    }
+
+    public TimeEntry(LocalDateTime initialDate, LocalDateTime endDate, String note, List<User> employees, Ticket ticket) {
+        this.initialDate = initialDate;
+        this.endDate = endDate;
+        this.note = note;
+        this.employees = employees;
+        this.ticket = ticket;
     }
 
     public int getId() {
@@ -76,5 +90,13 @@ public class TimeEntry {
 
     public void setEmployees(List<User> employees) {
         this.employees = employees;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 }

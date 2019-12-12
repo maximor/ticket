@@ -138,7 +138,7 @@
                                     ${timeEntry.getNote()}
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-primary" href="/employee/"><i class="ti-pencil"></i></a>
+                                    <a class="btn btn-primary" href="/timeentry-edit/${timeEntry.getId()}"><i class="ti-pencil"></i></a>
                                     <a class="btn btn-danger" onclick="deletef()" href="#!"><i class="ti-close"></i></a>
                                 </td>
                             </tr>
