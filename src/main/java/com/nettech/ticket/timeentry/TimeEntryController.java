@@ -135,4 +135,18 @@ public class TimeEntryController {
         }
         return "timeentry/timeentry-edit";
     }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/ticket/{idTicket}/timeentry/{id}/delete")
+    public String timeEntryDelete(@PathVariable Integer idTicket, @PathVariable Integer id, Model model){
+        try{
+            Ticket ticket = ticketRepository.findById(idTicket).get();
+            TimeEntry timeEntry = timeEntryRepository.findById(id).get();
+
+            ticket.getTimeEntries().remove(timeEntry);
+            ticketRepository.save(ticket);
+        }catch (NullPointerException e){
+            System.out.println(e.getMessage());
+        }
+        return "redirect:/ticket/"+idTicket;
+    }
 }

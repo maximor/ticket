@@ -139,7 +139,7 @@
                                 </td>
                                 <td class="text-center">
                                     <a class="btn btn-primary" href="/timeentry-edit/${timeEntry.getId()}"><i class="ti-pencil"></i></a>
-                                    <a class="btn btn-danger" onclick="deletef()" href="#!"><i class="ti-close"></i></a>
+                                    <a class="btn btn-danger" onclick="deleteTimeEntryFromTicket(${timeEntry.getTicket().getId()}, ${timeEntry.getId()})"><i class="ti-close"></i></a>
                                 </td>
                             </tr>
                         </#list>
@@ -195,7 +195,7 @@
     });
 
     function deleteTicketEmployee(id, idEmployee) {
-        var confirmation = confirm("Are you sure you want to delete this ticket?");
+        var confirmation = confirm("Are you sure you want to delete this employee?");
         if(confirmation){
             $.ajax({
                 url: '/ticket/'+id+'/employee/'+idEmployee+'/delete',
@@ -216,6 +216,20 @@
                 type: 'delete',
                 success:function(result){
                     window.location.href = "http://localhost/ticket/"+id;
+                }
+
+            });
+        }
+    }
+
+    function deleteTimeEntryFromTicket(idTicket, idTimeEntry) {
+        let confirmation = confirm("Are you sure you want to delete this time Entry from ticket #"+idTicket+" ?");
+        if(confirmation){
+            $.ajax({
+                url: '/ticket/'+idTicket+'/timeentry/'+idTimeEntry+'/delete',
+                type: 'delete',
+                success:function(result){
+                    window.location.href = "http://localhost/ticket/"+idTicket;
                 }
 
             });
