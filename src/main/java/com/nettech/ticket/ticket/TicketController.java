@@ -30,7 +30,7 @@ public class TicketController {
         currentUser = userRepository.findByEmail(principal.getName());
         model.addAttribute("currentUserName", currentUser.getFirstname()+" "+currentUser.getLastname());
 
-        model.addAttribute("tickets", ticketRepository.findAllByStatusTrue());
+        model.addAttribute("tickets", ticketRepository.findAll());
         return "ticket/ticket-view";
     }
 
@@ -135,6 +135,19 @@ public class TicketController {
         }
 
         return "ticket/ticket-edit";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/ticket/{id}/close")
+    public String ticketClose(@PathVariable Integer id, Model model){
+        Ticket ticket = ticketRepository.findById(id).get();
+        try{
+            ticket.setStatus(false);
+            ticketRepository.save(ticket);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return "redirect:/ticket/"+id;
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/ticket/{id}/delete")

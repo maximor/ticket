@@ -25,7 +25,7 @@
             <div class="card-header text-right col-sm-4">
                 <#if ticket??>
                     <a class="btn btn-lg btn-primary" href="/timeentry/${ticket.getId()}">Create Time Entry</a>
-                    <a href="" class="btn btn-lg btn-success">Close This Ticket</a>
+                    <a onclick="closeTicket(${ticket.getId()})" class="btn btn-lg btn-success">Close This Ticket</a>
                 </#if>
             </div>
 
@@ -45,6 +45,20 @@
                 <div class="col-sm-10">
                     <#if ticket??>
                         ${ticket.getId()}
+                    <#else>
+                        N/A
+                    </#if>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Status:</label>
+                <div class="col-sm-10">
+                    <#if ticket??>
+                        <#if ticket.isStatus() == true>
+                            <label class="badge badge-success">Open</label>
+                        <#else>
+                            <label class="badge badge-danger">Close</label>
+                        </#if>
                     <#else>
                         N/A
                     </#if>
@@ -204,6 +218,19 @@
                     window.location.href = "http://localhost/ticket/"+id;
                 }
 
+            });
+        }
+    }
+
+    function closeTicket(id) {
+        let confirmationMessage = confirm("Are you sure you want to close this ticket?");
+        if(confirmationMessage){
+            $.ajax({
+               url: '/ticket/'+id+'/close',
+               type: 'post',
+               success: function (result) {
+                   window.location.href = "http://localhost/ticket/"+id;
+               }
             });
         }
     }

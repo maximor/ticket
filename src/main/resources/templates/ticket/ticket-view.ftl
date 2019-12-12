@@ -58,9 +58,9 @@
                             <td>${ticket.getCreationDate()}</td>
                             <td>
                                 <#if ticket.isStatus()>
-                                    Open
+                                    <label class="badge badge-success">Open</label>
                                 <#else>
-                                    Close
+                                    <label class="badge badge-danger">Close</label>
                                 </#if>
                             </td>
                             <td class="text-center">
