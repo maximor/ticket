@@ -66,9 +66,13 @@ public class TimeEntryController {
             Ticket ticket = ticketRepository.findById(idTicket).get();
 
             System.out.println("date: " + initialDate);
-            List<TimeEntry> timeEntries = new ArrayList<>();
-            timeEntries.add(new TimeEntry(initialDate, endDate, note, Arrays.asList(employee)));
-            ticket.setTimeEntries(timeEntries);
+            if(ticket.getTimeEntries().size() > 0){
+                ticket.getTimeEntries().add(new TimeEntry(initialDate, endDate, note, Arrays.asList(employee)));
+            }else{
+                List<TimeEntry> timeEntries = new ArrayList<>();
+                timeEntries.add(new TimeEntry(initialDate, endDate, note, Arrays.asList(employee)));
+                ticket.setTimeEntries(timeEntries);
+            }
             ticketRepository.save(ticket);
             model.addAttribute("ticket", ticket);
             model.addAttribute("message", "Time Entry saved successfully for Ticket #"+ticket.getId());

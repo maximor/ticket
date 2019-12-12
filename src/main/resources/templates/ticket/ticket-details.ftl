@@ -23,7 +23,7 @@
                 </#if>
             </div>
             <div class="card-header text-right col-sm-4">
-                <#if ticket??>
+                <#if ticket?? && ticket.isStatus()==true>
                     <a class="btn btn-lg btn-primary" href="/timeentry/${ticket.getId()}">Create Time Entry</a>
                     <a onclick="closeTicket(${ticket.getId()})" class="btn btn-lg btn-success">Close This Ticket</a>
                 </#if>
