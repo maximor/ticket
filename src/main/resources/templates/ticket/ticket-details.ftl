@@ -14,12 +14,23 @@
                 N/A
             </#if>
         </h3>
-        <div class="card-header text-center">
-            <#if ticket??>
-                <a class="btn btn-info" href="/ticket-edit/${ticket.getId()}">Edit</a>
-                <a class="btn btn-danger" onclick="deletef(${ticket.getId()})">Delete</a>
-            </#if>
+        <div class="row">
+            <div class="card-header text-left col-sm-8">
+                <#if ticket??>
+                    <a class="btn btn-lg btn-info" href="/ticket-edit/${ticket.getId()}">Edit</a>
+                    <a class="btn btn-lg btn-danger" onclick="deletef(${ticket.getId()})">Delete</a>
+
+                </#if>
+            </div>
+            <div class="card-header text-right col-sm-4">
+                <#if ticket??>
+                    <a class="btn btn-lg btn-primary" href="/timeentry/${ticket.getId()}">Create Time Entry</a>
+                    <a href="" class="btn btn-lg btn-success">Close This Ticket</a>
+                </#if>
+            </div>
+
         </div>
+
 
         <div class="card-header-right">
             <i class="icofont icofont-spinner-alt-5"></i>

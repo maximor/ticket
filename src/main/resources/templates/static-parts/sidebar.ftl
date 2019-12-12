@@ -26,14 +26,14 @@
                             <li class=" ">
                                 <a href="/ticket/view">
                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">View Ticket</span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">View</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li class=" ">
                                 <a href="/ticket/create">
                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Create Ticket</span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Create</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>

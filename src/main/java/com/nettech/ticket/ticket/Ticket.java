@@ -27,11 +27,11 @@ public class Ticket {
 
     private String employeesfield;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<User> employees;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<TimeEntry> timeEntries;
 

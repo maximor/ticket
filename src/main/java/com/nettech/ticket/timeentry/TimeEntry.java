@@ -3,6 +3,7 @@ package com.nettech.ticket.timeentry;
 import com.nettech.ticket.user.User;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -12,9 +13,9 @@ public class TimeEntry {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(nullable = false)
-    private Date InitialDate;
+    private LocalDateTime initialDate;
     @Column(nullable = false)
-    private Date endDate;
+    private LocalDateTime endDate;
     @Column(nullable = false)
     private String note;
 
@@ -24,14 +25,14 @@ public class TimeEntry {
     public TimeEntry() {
     }
 
-    public TimeEntry(Date InitialDate, Date endDate, String note) {
-        this.InitialDate = InitialDate;
+    public TimeEntry(LocalDateTime InitialDate, LocalDateTime endDate, String note) {
+        this.initialDate = InitialDate;
         this.endDate = endDate;
         this.note = note;
     }
 
-    public TimeEntry(Date InitialDate, Date endDate, String note, List<User> employees) {
-        this.InitialDate = InitialDate;
+    public TimeEntry(LocalDateTime InitialDate, LocalDateTime endDate, String note, List<User> employees) {
+        this.initialDate = InitialDate;
         this.endDate = endDate;
         this.note = note;
         this.employees = employees;
@@ -45,19 +46,19 @@ public class TimeEntry {
         this.id = id;
     }
 
-    public Date getInitialDate() {
-        return InitialDate;
+    public LocalDateTime getInitialDate() {
+        return initialDate;
     }
 
-    public void setInitialDate(Date initialDate) {
-        this.InitialDate = initialDate;
+    public void setInitialDate(LocalDateTime initialDate) {
+        this.initialDate = initialDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
