@@ -55,7 +55,7 @@
                     <a class="mobile-menu" id="mobile-collapse" href="#!">
                         <i class="ti-menu"></i>
                     </a>
-                    <a class="navbar-brand" href="#">Ticket</a>
+                    <a class="navbar-brand" href="/">Ticket</a>
                     <a class="mobile-options">
                         <i class="ti-more"></i>
                     </a>
@@ -84,7 +84,7 @@
                             </a>
                             <ul class="show-notification profile-notification">
                                 <li>
-                                    <a href="user-profile.html">
+                                    <a href="/profile">
                                         <i class="ti-user"></i> Profile
                                     </a>
                                 </li>
