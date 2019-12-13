@@ -78,8 +78,17 @@
                 </ul>
                 <ul class="pcoded-item pcoded-left-item">
                     <li class="">
+                        <a href="/profile">
+                            <span class="pcoded-micon"><i class="ti-user"></i><b>P</b></span>
+                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Profile</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="pcoded-item pcoded-left-item">
+                    <li class="">
                         <a href="/logout">
-                            <span class="pcoded-micon"><i class="ti-arrow-right"></i><b>R</b></span>
+                            <span class="pcoded-micon"><i class="ti-arrow-right"></i><b>L</b></span>
                             <span class="pcoded-mtext" data-i18n="nav.dash.main">Logout</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
