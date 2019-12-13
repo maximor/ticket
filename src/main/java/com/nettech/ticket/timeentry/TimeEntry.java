@@ -26,6 +26,8 @@ public class TimeEntry {
     @ManyToOne
     private Ticket ticket;
 
+    private float hours;
+
 
 
     public TimeEntry() {
@@ -50,6 +52,15 @@ public class TimeEntry {
         this.note = note;
         this.employees = employees;
         this.ticket = ticket;
+    }
+
+    public TimeEntry(LocalDateTime initialDate, LocalDateTime endDate, String note, List<User> employees, Ticket ticket, float hours) {
+        this.initialDate = initialDate;
+        this.endDate = endDate;
+        this.note = note;
+        this.employees = employees;
+        this.ticket = ticket;
+        this.hours = hours;
     }
 
     public int getId() {
@@ -98,5 +109,13 @@ public class TimeEntry {
 
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
+    }
+
+    public float getHours() {
+        return hours;
+    }
+
+    public void setHours(float hours) {
+        this.hours = hours;
     }
 }
