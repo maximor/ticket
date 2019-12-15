@@ -43,7 +43,7 @@ Email: admin@administrator.com
 
 Password: admin
 
-### Visual Summary
+## Visual Summary
 
 * [Application Images](https://github.com/maximor/ticket/tree/master/application-images) - Images with the main modules of the application.
 
