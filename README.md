@@ -37,7 +37,7 @@ This command will download all resources and run the application automatically.
 
 Now, open your favorite browser like Chrome, FireFox and just write localhost and your will be able to use the ticket web application, Example:
 
-![](application-images/browser.png)
+![](https://github.com/maximor/ticket/blob/master/application-images/browser.PNG)
 
 ## Application Credentials
 
